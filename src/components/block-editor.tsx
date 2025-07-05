@@ -2,8 +2,17 @@
 
 import { useTheme } from "next-themes";
 import type { BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
+import { useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
+import dynamic from "next/dynamic";
+
+// The BlockNoteView component causes issues with SSR, so we dynamically import it.
+const BlockNoteView = dynamic(
+  () => import("@blocknote/react").then((mod) => mod.BlockNoteView),
+  {
+    ssr: false,
+  }
+);
 
 interface EditorProps {
   onChange: (editor: BlockNoteEditor) => void;
