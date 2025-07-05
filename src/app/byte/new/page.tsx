@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { BlockEditor } from "@/components/block-editor";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,6 +13,22 @@ import {
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import type { PartialBlock } from "@blocknote/core";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const BlockEditor = dynamic(
+  () => import("@/components/block-editor").then((mod) => mod.BlockEditor),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="space-y-2 p-4">
+        <Skeleton className="h-8 w-1/3" />
+        <Skeleton className="h-20 w-full" />
+      </div>
+    ),
+  }
+);
+
 
 export default function NewBytePage() {
   const [title, setTitle] = useState("");
@@ -70,7 +85,7 @@ export default function NewBytePage() {
       
       <div className="space-y-2">
         <Label>Content</Label>
-        <div className="rounded-lg border bg-background">
+        <div className="rounded-lg border bg-background min-h-[200px]">
            <BlockEditor onChange={(editor) => setContent(editor.topLevelBlocks)} />
         </div>
         <p className="text-sm text-muted-foreground">
