@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Home, Compass, User, Settings, PenSquare } from "lucide-react";
 
@@ -56,10 +56,12 @@ export default function MainNav() {
           ))}
            <Tooltip>
               <TooltipTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-10 w-10 mt-4 bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link 
+                  href="/byte/new" 
+                  className={cn(buttonVariants({ variant: 'default', size: 'icon' }), "mt-4")}>
                   <PenSquare className="h-5 w-5" />
                   <span className="sr-only">Create Byte</span>
-                </Button>
+                </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Create Byte</TooltipContent>
             </Tooltip>
