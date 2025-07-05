@@ -16,6 +16,7 @@ import type { PartialBlock } from "@blocknote/core";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
+// Dynamically import the editor component with SSR disabled.
 const BlockEditor = dynamic(
   () => import("@/components/block-editor"),
   {
@@ -72,7 +73,7 @@ export default function NewBytePage() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="teret">Teret (Topic)</Label>
-           <Select onValuechange={setTeret} value={teret}>
+           <Select onValueChange={setTeret} value={teret}>
             <SelectTrigger id="teret" className="w-[240px]">
               <SelectValue placeholder="Select a teret" />
             </SelectTrigger>

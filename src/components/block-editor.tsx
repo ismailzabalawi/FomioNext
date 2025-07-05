@@ -6,12 +6,10 @@ import { useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import dynamic from "next/dynamic";
 
-// The BlockNoteView component causes issues with SSR, so we dynamically import it.
+// The BlockNoteView component is dynamically imported to prevent server-side rendering issues.
 const BlockNoteView = dynamic(
   () => import("@blocknote/react").then((mod) => mod.BlockNoteView),
-  {
-    ssr: false,
-  }
+  { ssr: false }
 );
 
 interface EditorProps {
@@ -27,6 +25,7 @@ export default function BlockEditor({
 }: EditorProps) {
   const { resolvedTheme } = useTheme();
 
+  // Creates a new editor instance.
   const editor: BlockNoteEditor = useBlockNote({
     editable,
     initialContent: initialContent,
@@ -35,6 +34,7 @@ export default function BlockEditor({
     },
   });
 
+  // Renders the editor instance using a React component.
   return (
     <BlockNoteView
       editor={editor}
