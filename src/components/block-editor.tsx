@@ -20,11 +20,11 @@ interface EditorProps {
   editable?: boolean;
 }
 
-export const BlockEditor = ({
+export default function BlockEditor({
   onChange,
   initialContent,
   editable = true,
-}: EditorProps) => {
+}: EditorProps) {
   const { resolvedTheme } = useTheme();
 
   const editor: BlockNoteEditor = useBlockNote({
@@ -41,4 +41,4 @@ export const BlockEditor = ({
       theme={resolvedTheme === "dark" ? "dark" : "light"}
     />
   );
-};
+}

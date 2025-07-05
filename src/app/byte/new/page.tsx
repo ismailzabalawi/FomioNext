@@ -17,7 +17,7 @@ import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const BlockEditor = dynamic(
-  () => import("@/components/block-editor").then((mod) => mod.BlockEditor),
+  () => import("@/components/block-editor"),
   {
     ssr: false,
     loading: () => (
@@ -72,7 +72,7 @@ export default function NewBytePage() {
         </div>
         <div className="space-y-2">
           <Label htmlFor="teret">Teret (Topic)</Label>
-           <Select onValueChange={setTeret} value={teret}>
+           <Select onValuechange={setTeret} value={teret}>
             <SelectTrigger id="teret" className="w-[240px]">
               <SelectValue placeholder="Select a teret" />
             </SelectTrigger>
