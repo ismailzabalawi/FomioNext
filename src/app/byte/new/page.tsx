@@ -4,31 +4,38 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Hash } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 function CreateByteForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [teret, setTeret] = useState("");
 
   useEffect(() => {
     // Pre-fill from query params if coming back from preview
     const draftTitle = searchParams.get("title");
     const draftContent = searchParams.get("content");
+    const draftTeret = searchParams.get("teret");
     if (draftTitle) {
       setTitle(draftTitle);
     }
     if (draftContent) {
       setContent(draftContent);
     }
+    if (draftTeret) {
+      setTeret(draftTeret);
+    }
   }, [searchParams]);
 
   const handleContinue = () => {
-    if (title.trim() && content.trim()) {
+    if (title.trim() && content.trim() && teret.trim()) {
       const params = new URLSearchParams();
       params.set("title", title);
       params.set("content", content);
+      params.set("teret", teret);
       router.push(`/byte/new/preview?${params.toString()}`);
     }
   };
@@ -36,6 +43,15 @@ function CreateByteForm() {
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto">
       <div className="flex-1 flex flex-col gap-4 py-4">
+        <div className="relative">
+          <Hash className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            placeholder="Add a teret (e.g., WebDev, Design)"
+            value={teret}
+            onChange={(e) => setTeret(e.target.value)}
+            className="pl-9 font-semibold"
+          />
+        </div>
         <Textarea
           placeholder="Add title"
           value={title}
@@ -51,7 +67,7 @@ function CreateByteForm() {
         />
       </div>
       <div className="py-4 flex justify-end">
-        <Button onClick={handleContinue} disabled={!title.trim() || !content.trim()}>
+        <Button onClick={handleContinue} disabled={!title.trim() || !content.trim() || !teret.trim()}>
           Preview
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>

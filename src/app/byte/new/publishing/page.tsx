@@ -18,6 +18,7 @@ function PublishingContent() {
             console.log("Publishing byte:", {
                 title: searchParams.get("title"),
                 content: searchParams.get("content"),
+                teret: searchParams.get("teret"),
             });
             setStatus("success");
         }, 2500); // Simulate network delay

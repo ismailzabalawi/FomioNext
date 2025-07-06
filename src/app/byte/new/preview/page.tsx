@@ -6,11 +6,13 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ArrowLeft } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 function PreviewContent() {
     const searchParams = useSearchParams();
     const title = searchParams.get("title") || "Untitled";
     const content = searchParams.get("content") || "No content provided.";
+    const teret = searchParams.get("teret") || "No Teret";
     // Simple conversion of newlines to paragraphs for preview
     const contentAsHtml = content.split('\n').map(p => `<p>${p}</p>`).join('');
 
@@ -26,7 +28,8 @@ function PreviewContent() {
 
             <Card className="overflow-hidden">
                 <CardHeader>
-                    <CardTitle className="font-headline text-2xl">{title}</CardTitle>
+                    <Badge variant="secondary" className="w-fit">{teret}</Badge>
+                    <CardTitle className="font-headline text-2xl pt-2">{title}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div className="prose prose-lg dark:prose-invert max-w-none" dangerouslySetInnerHTML={{ __html: contentAsHtml }} />
