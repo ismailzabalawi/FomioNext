@@ -14,28 +14,26 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import type { PartialBlock } from "@blocknote/core";
 import dynamic from "next/dynamic";
+import { useMemo } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Dynamically import the editor component with SSR disabled.
-const BlockEditor = dynamic(
-  () => import("@/components/block-editor"),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="space-y-2 p-4">
-        <Skeleton className="h-8 w-1/3" />
-        <Skeleton className="h-20 w-full" />
-      </div>
-    ),
-  }
-);
-
 
 export default function NewBytePage() {
   const [title, setTitle] = useState("");
   const [teret, setTeret] = useState("");
   const [content, setContent] = useState<PartialBlock[] | undefined>(undefined);
   const { toast } = useToast();
+
+  const BlockEditor = useMemo(() =>
+    dynamic(() => import("@/components/block-editor"), {
+      ssr: false,
+      loading: () => (
+        <div className="space-y-2 p-4">
+          <Skeleton className="h-8 w-1/3" />
+          <Skeleton className="h-20 w-full" />
+        </div>
+      ),
+    }),
+  []);
 
   const handlePublish = () => {
     // In a real app, you'd send this data to your backend.
