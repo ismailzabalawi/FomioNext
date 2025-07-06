@@ -38,7 +38,7 @@ export default function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
       <Link href="/" className="sm:hidden">
           <MessagesSquare className="h-6 w-6 text-primary" />
       </Link>
