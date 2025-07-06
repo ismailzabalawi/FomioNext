@@ -2,7 +2,7 @@
 
 import { useTheme } from "next-themes";
 import type { BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
+import { BlockNoteViewRaw as BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 import React from "react";
 
