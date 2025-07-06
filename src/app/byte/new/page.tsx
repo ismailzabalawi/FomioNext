@@ -56,20 +56,20 @@ function CreateByteForm() {
 
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto">
-      <div className="flex-1 flex flex-col gap-4 py-4">
+      <div className="py-4 flex justify-between items-center gap-4">
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button
                     variant="outline"
                     role="combobox"
                     aria-expanded={open}
-                    className="w-full justify-between font-semibold"
+                    className="w-[280px] justify-between font-semibold"
                 >
-                    {teret || "Add a teret (e.g., WebDev, Design)"}
+                    {teret || "Add a teret (e.g., WebDev)"}
                     <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+            <PopoverContent className="w-[280px] p-0">
                 <Command value={searchValue} onValueChange={setSearchValue}>
                     <CommandInput placeholder="Search or create a teret..."/>
                     <CommandList>
@@ -108,6 +108,13 @@ function CreateByteForm() {
                 </Command>
             </PopoverContent>
         </Popover>
+        <Button onClick={handleContinue} disabled={!title.trim() || !content.trim() || !teret.trim()}>
+          Preview
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Button>
+      </div>
+
+      <div className="flex-1 flex flex-col gap-4 pb-4">
         <Textarea
           placeholder="Add title"
           value={title}
@@ -121,12 +128,6 @@ function CreateByteForm() {
           onChange={(e) => setContent(e.target.value)}
           className="flex-1 border-none focus-visible:ring-0 p-0 resize-none shadow-none text-lg bg-transparent"
         />
-      </div>
-      <div className="py-4 flex justify-end">
-        <Button onClick={handleContinue} disabled={!title.trim() || !content.trim() || !teret.trim()}>
-          Preview
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
       </div>
     </div>
   );
