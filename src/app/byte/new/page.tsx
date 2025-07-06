@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const BlockEditor = dynamic(() => import("@/components/block-editor"), {
   ssr: false,
   loading: () => (
-    <div className="space-y-2 p-4">
+    <div className="space-y-2 p-4 border rounded-lg">
       <Skeleton className="h-8 w-1/3" />
       <Skeleton className="h-20 w-full" />
     </div>
