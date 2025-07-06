@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -45,7 +46,9 @@ export default function ProfilePage() {
             <p className="text-muted-foreground">@{user.username}</p>
             <p className="mt-2 max-w-xl">{user.bio}</p>
           </div>
-          <Button>Edit Profile</Button>
+          <Button asChild>
+            <Link href="/settings">Edit Profile</Link>
+          </Button>
         </CardContent>
       </Card>
 

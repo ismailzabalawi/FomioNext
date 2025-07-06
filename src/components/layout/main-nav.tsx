@@ -5,11 +5,12 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Home, Compass, User, Settings, PenSquare } from "lucide-react";
+import { Home, Compass, User, Settings, PenSquare, Bell } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/discover", label: "Discover", icon: Compass },
+  { href: "/notifications", label: "Notifications", icon: Bell },
   { href: "/profile", label: "Profile", icon: User },
 ];
 
@@ -41,7 +42,7 @@ export default function MainNav() {
                   href={item.href}
                   className={cn(
                     buttonVariants({
-                      variant: pathname === item.href ? "secondary" : "ghost",
+                      variant: pathname.startsWith(item.href) && item.href !== "/" || pathname === item.href ? "secondary" : "ghost",
                       size: "icon",
                     }),
                     "h-10 w-10"
@@ -74,7 +75,7 @@ export default function MainNav() {
                   href={item.href}
                   className={cn(
                     buttonVariants({
-                      variant: pathname === item.href ? "secondary" : "ghost",
+                      variant: pathname.startsWith(item.href) ? "secondary" : "ghost",
                       size: "icon",
                     }),
                     "h-10 w-10"
