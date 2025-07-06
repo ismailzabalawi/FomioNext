@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import type { PartialBlock } from "@blocknote/core";
+import type { PartialBlock, BlockNoteEditor } from "@blocknote/core";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -43,6 +43,10 @@ export default function NewBytePage() {
       title: "Byte Published!",
       description: "Your new byte is now live (check the browser console).",
     });
+  };
+
+  const handleEditorChange = (editor: BlockNoteEditor) => {
+    setContent(editor.topLevelBlocks);
   };
   
   // This would come from your API
@@ -82,7 +86,7 @@ export default function NewBytePage() {
       <div className="space-y-2">
         <Label>Content</Label>
         <div className="rounded-lg border bg-background min-h-[200px]">
-           <BlockEditor onChange={(editor) => setContent(editor.topLevelBlocks)} />
+           <BlockEditor onChange={handleEditorChange} />
         </div>
         <p className="text-sm text-muted-foreground">
           This is a block-based editor. Try typing <kbd className="px-1.5 py-0.5 border rounded bg-muted shadow-sm">/

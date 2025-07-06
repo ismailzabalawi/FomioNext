@@ -2,21 +2,14 @@
 
 import { useTheme } from "next-themes";
 import type { BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { useBlockNote } from "@blocknote/react";
+import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
-import dynamic from "next/dynamic";
 
 interface EditorProps {
   onChange: (editor: BlockNoteEditor) => void;
   initialContent?: PartialBlock[];
   editable?: boolean;
 }
-
-// Dynamically import `BlockNoteView` to prevent build errors with Next.js.
-const BlockNoteView = dynamic(
-  () => import("@blocknote/react").then((mod) => mod.BlockNoteView),
-  { ssr: false }
-);
 
 export default function BlockEditor({
   onChange,
@@ -26,13 +19,19 @@ export default function BlockEditor({
   const { resolvedTheme } = useTheme();
 
   // Creates a new editor instance.
-  const editor: BlockNoteEditor = useBlockNote({
+  // The editor is created asynchronously, so it will be null on the first render.
+  const editor: BlockNoteEditor | null = useBlockNote({
     editable,
     initialContent: initialContent,
     onEditorContentChange: (editor) => {
       onChange(editor);
     },
   });
+
+  // Render a loading state while the editor is loading
+  if (!editor) {
+    return <div>Loading Editor...</div>;
+  }
 
   // Renders the editor instance using a React component.
   return (
