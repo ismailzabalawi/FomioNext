@@ -2,7 +2,9 @@
 
 import { useTheme } from "next-themes";
 import type { BlockNoteEditor, PartialBlock } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
+// The build error suggests BlockNoteView doesn't exist and suggests BlockNoteViewRaw instead.
+// We will try using the suggested import, aliasing it to keep the component's code the same.
+import { BlockNoteViewRaw as BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/core/style.css";
 
 interface EditorProps {
