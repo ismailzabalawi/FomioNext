@@ -26,15 +26,13 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className={cn('font-body antialiased', 'min-h-screen bg-background')}>
+      <body className={cn('font-body antialiased', 'bg-background')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="relative flex min-h-screen flex-col">
-            <div className="flex min-h-screen">
-              <MainNav />
-              <div className="flex flex-1 flex-col border-l">
-                <Header />
-                <main className="flex-1 p-4 pb-24 sm:p-6 sm:pb-6 lg:p-8 lg:pb-8">{children}</main>
-              </div>
+          <div className="flex h-screen">
+            <MainNav />
+            <div className="flex flex-1 flex-col border-l overflow-y-auto">
+              <Header />
+              <main className="flex-1 p-4 pb-24 sm:p-6 sm:pb-6 lg:p-8 lg:pb-8">{children}</main>
             </div>
           </div>
           <Toaster />
