@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Heart, Bookmark } from "lucide-react";
@@ -14,12 +15,18 @@ type ByteCardProps = {
   };
   title: string;
   teret: string;
+  imageUrl?: string;
   className?: string;
 };
 
-export default function ByteCard({ id, author, title, teret, className }: ByteCardProps) {
+export default function ByteCard({ id, author, title, teret, imageUrl, className }: ByteCardProps) {
   return (
     <Card className={cn("flex flex-col overflow-hidden transition-all hover:shadow-xl rounded-2xl", className)}>
+      {imageUrl && (
+        <Link href={`/byte/${id}`} className="block relative aspect-video">
+            <Image src={imageUrl} alt={title} fill className="object-cover" data-ai-hint="abstract illustration" />
+        </Link>
+      )}
       <CardHeader>
         <CardTitle className="font-headline text-xl">
           <Link href={`/byte/${id}`} className="hover:underline">

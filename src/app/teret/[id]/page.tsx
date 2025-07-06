@@ -15,13 +15,15 @@ export default function TeretPage({ params }: { params: { id: string } }) {
       id: "1",
       author: { name: "Ava", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Future of Frontend Development",
-      teret: "Web Dev"
+      teret: "Web Dev",
+      imageUrl: "https://placehold.co/600x400.png",
     },
     {
       id: "7",
       author: { name: "Chris", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Server-Side Rendering vs. Client-Side Rendering",
-      teret: "Web Dev"
+      teret: "Web Dev",
+      imageUrl: "https://placehold.co/600x400.png",
     },
   ];
 

@@ -7,25 +7,29 @@ export default function Home() {
       id: "1",
       author: { name: "Ava", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Future of Frontend Development",
-      teret: "Web Dev"
+      teret: "Web Dev",
+      imageUrl: "https://placehold.co/600x400.png",
     },
     {
       id: "2",
       author: { name: "Leo", avatarUrl: "https://placehold.co/40x40.png" },
       title: "A Deep Dive into Rust for Systems Programming",
-      teret: "Programming"
+      teret: "Programming",
+      imageUrl: "https://placehold.co/600x400.png",
     },
     {
       id: "3",
       author: { name: "Mia", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Minimalist Design Principles for Modern UIs",
-      teret: "Design"
+      teret: "Design",
+      imageUrl: "https://placehold.co/600x400.png",
     },
     {
       id: "4",
       author: { name: "Noah", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Getting Started with Quantum Computing",
-      teret: "Science"
+      teret: "Science",
+      imageUrl: "https://placehold.co/600x400.png",
     },
   ];
 

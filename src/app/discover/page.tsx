@@ -14,13 +14,15 @@ export default function DiscoverPage() {
       id: "5",
       author: { name: "Zoe", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Is Web3 still relevant in 2024?",
-      teret: "Web3"
+      teret: "Web3",
+      imageUrl: "https://placehold.co/600x400.png",
     },
     {
       id: "6",
       author: { name: "Alex", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Art of the Command Line",
-      teret: "Productivity"
+      teret: "Productivity",
+      imageUrl: "https://placehold.co/600x400.png",
     },
   ];
 
