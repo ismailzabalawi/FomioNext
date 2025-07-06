@@ -1,8 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const FomioIcon = () => (
   <svg role="img" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -11,21 +13,66 @@ const FomioIcon = () => (
   </svg>
 );
 
-
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [searchVisible, setSearchVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+      if (!isScrolled) {
+        setSearchVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
+  const handleSearchClick = () => {
+    setSearchVisible(true);
+    setTimeout(() => {
+        const searchInput = document.getElementById('header-search');
+        if (searchInput) {
+            searchInput.focus();
+        }
+    }, 0);
+  }
+
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:justify-end sm:px-6 lg:px-8">
-      {/* On mobile, show the logo in the header because the sidebar isn't visible */}
+    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
       <Link href="/" className="sm:hidden">
           <FomioIcon />
       </Link>
       
-      <div className="relative w-full max-w-xs sm:w-64">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input
-          placeholder="Search Fomio..."
-          className="w-full rounded-full bg-muted pl-9"
-        />
+      <div className="flex flex-1 items-center justify-end">
+        {(!scrolled || searchVisible) ? (
+          <div 
+              className="relative w-full max-w-lg"
+              onBlur={(e) => {
+                if (scrolled && !e.currentTarget.contains(e.relatedTarget)) {
+                    setSearchVisible(false);
+                }
+              }}
+          >
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <Input
+              id="header-search"
+              placeholder="Search Fomio..."
+              className="w-full rounded-full bg-muted pl-9"
+            />
+          </div>
+        ) : (
+           <Button 
+                variant="ghost" 
+                size="icon" 
+                className="rounded-full"
+                onClick={handleSearchClick}
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+        )}
       </div>
     </header>
   );
