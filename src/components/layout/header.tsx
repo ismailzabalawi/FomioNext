@@ -19,16 +19,19 @@ export default function Header() {
   const [searchVisible, setSearchVisible] = useState(false);
 
   useEffect(() => {
+    const scrollContainer = document.getElementById("main-scroll-container");
+    if (!scrollContainer) return;
+
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
+      const isScrolled = scrollContainer.scrollTop > 10;
       setScrolled(isScrolled);
       if (!isScrolled) {
         setSearchVisible(false);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
   }, []);
   
   const handleSearchClick = () => {

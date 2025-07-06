@@ -30,7 +30,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="flex h-screen">
             <MainNav />
-            <div className="flex flex-1 flex-col border-l overflow-y-auto">
+            <div id="main-scroll-container" className="flex flex-1 flex-col border-l overflow-y-auto">
               <Header />
               <main className="flex-1 p-4 pb-24 sm:p-6 sm:pb-6 lg:p-8 lg:pb-8">{children}</main>
             </div>
