@@ -24,6 +24,13 @@ export default function TeretPage({ params }: { params: { id: string } }) {
       title: "Server-Side Rendering vs. Client-Side Rendering",
       teret: "Web Dev",
       link: "https://vercel.com/blog/everything-about-react-server-components",
+      linkPreview: {
+        title: "Everything About React Server Components",
+        description: "Learn about the future of React and how Server Components are changing the way we build web applications.",
+        image: "https://placehold.co/600x400.png",
+        siteName: "Vercel",
+        favicon: "https://placehold.co/32x32.png"
+      }
     },
   ];
 

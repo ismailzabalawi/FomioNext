@@ -4,9 +4,16 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Heart, Bookmark, Link2, Loader2 } from "lucide-react";
+import { User, Heart, Bookmark, Link2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+
+type LinkPreview = {
+    title: string;
+    description?: string;
+    image?: string;
+    favicon?: string;
+    siteName?: string;
+};
 
 type ByteCardProps = {
   id: string;
@@ -18,15 +25,8 @@ type ByteCardProps = {
   teret: string;
   imageUrl?: string;
   link?: string;
+  linkPreview?: LinkPreview | null;
   className?: string;
-};
-
-type LinkPreview = {
-    title: string;
-    description?: string;
-    image?: string;
-    favicon?: string;
-    siteName?: string;
 };
 
 // Helper function to extract YouTube video ID from various URL formats
@@ -43,42 +43,9 @@ const getYouTubeId = (url: string) => {
     return null;
 };
 
-export default function ByteCard({ id, author, title, teret, imageUrl, link, className }: ByteCardProps) {
+export default function ByteCard({ id, author, title, teret, imageUrl, link, linkPreview, className }: ByteCardProps) {
   const youTubeId = link ? getYouTubeId(link) : null;
   const isGenericLink = link && !youTubeId;
-
-  const [linkPreview, setLinkPreview] = useState<LinkPreview | null>(null);
-  const [isLoadingPreview, setIsLoadingPreview] = useState(false);
-
-  useEffect(() => {
-    let isCancelled = false;
-    if (isGenericLink && link) {
-      setIsLoadingPreview(true);
-      setLinkPreview(null);
-      fetch(`/api/link-preview?url=${encodeURIComponent(link)}`)
-        .then(res => {
-            if (!res.ok) throw new Error("Failed to fetch preview");
-            return res.json();
-        })
-        .then(data => {
-            if (!isCancelled && data && !data.error) {
-              setLinkPreview(data);
-            }
-        })
-        .catch(err => {
-            console.error("Failed to get link preview", err);
-        })
-        .finally(() => {
-            if (!isCancelled) {
-              setIsLoadingPreview(false);
-            }
-        });
-    }
-    return () => {
-        isCancelled = true;
-    };
-  }, [isGenericLink, link]);
-
 
   let displayUrl = '';
   if (link) {
@@ -112,24 +79,17 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, cla
 
       {!imageUrl && isGenericLink && link && (
         <Link href={link} target="_blank" rel="noopener noreferrer" className="block relative aspect-video bg-muted transition-colors hover:bg-muted/80">
-            {isLoadingPreview && (
-                 <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center text-muted-foreground">
-                    <Loader2 className="h-8 w-8 animate-spin" />
-                    <p className="mt-2 text-sm">Fetching preview...</p>
-                 </div>
-            )}
-            {!isLoadingPreview && linkPreview && linkPreview.title && (
+            {linkPreview && linkPreview.title ? (
                  <div className="relative h-full w-full text-left bg-slate-900">
-                    {linkPreview.image && <img src={linkPreview.image} alt={linkPreview.title} className="w-full h-full object-cover opacity-50" />}
+                    {linkPreview.image && <img src={linkPreview.image} alt={linkPreview.title} className="w-full h-full object-cover opacity-50" data-ai-hint="website preview" />}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-4 text-white w-full">
-                        {linkPreview.favicon && <img src={linkPreview.favicon} width={20} height={20} alt="" className="rounded mb-2 bg-white p-0.5" />}
+                        {linkPreview.favicon && <img src={linkPreview.favicon} width={20} height={20} alt="" className="rounded mb-2 bg-white p-0.5" data-ai-hint="website favicon" />}
                         <h3 className="font-bold leading-tight line-clamp-2">{linkPreview.title}</h3>
                         {linkPreview.description && <p className="text-sm text-white/90 line-clamp-1 mt-1">{linkPreview.description}</p>}
                     </div>
                 </div>
-            )}
-             {!isLoadingPreview && (!linkPreview || !linkPreview.title) && (
+            ) : (
                 <div className="flex h-full w-full flex-col items-center justify-center p-4 text-center">
                     <Link2 className="h-10 w-10 shrink-0 text-muted-foreground" />
                     <p className="mt-2 w-full truncate font-semibold text-foreground">{displayUrl}</p>

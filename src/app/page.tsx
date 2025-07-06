@@ -23,12 +23,20 @@ export default function Home() {
       title: "Minimalist Design Principles for Modern UIs",
       teret: "Design",
       link: "https://uxdesign.cc/the-ultimate-guide-to-proper-use-of-typography-in-ui-design-48e945e85d32",
+      linkPreview: {
+        title: "The Ultimate Guide to Proper Use of Typography in UI Design",
+        description: "A comprehensive guide on how to choose fonts, create hierarchy, and use typography to build better user interfaces.",
+        image: "https://placehold.co/600x400.png",
+        siteName: "UX Collective",
+        favicon: "https://placehold.co/32x32.png"
+      }
     },
     {
       id: "4",
       author: { name: "Noah", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Getting Started with Quantum Computing",
       teret: "Science",
+      imageUrl: "https://placehold.co/600x400.png"
     },
   ];
 
