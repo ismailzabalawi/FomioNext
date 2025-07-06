@@ -60,7 +60,7 @@ export default function NotificationsPage() {
               <div className="relative">
                 <Avatar>
                   <AvatarImage src={notification.author.avatarUrl} alt={notification.author.name} data-ai-hint="profile picture" />
-                  <AvatarFallback>{notification.author.name.charAt(0)}</AvatarFallback>
+                  <AvatarFallback />
                 </Avatar>
                 <div className="absolute -bottom-1 -right-1 bg-background p-0.5 rounded-full">
                     <NotificationIcon type={notification.type} />

@@ -110,7 +110,7 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, lin
          <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
             <Avatar className="h-6 w-6">
               <AvatarImage src={author.avatarUrl} alt={author.name} data-ai-hint="profile picture" />
-              <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+              <AvatarFallback />
             </Avatar>
             <span>By {author.name} in <span className="font-medium text-primary">{teret}</span></span>
         </div>

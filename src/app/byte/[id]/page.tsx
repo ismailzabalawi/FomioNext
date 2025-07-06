@@ -46,7 +46,7 @@ export default function BytePage({ params }: { params: { id: string } }) {
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <Avatar className="h-8 w-8">
               <AvatarImage src={byte.author.avatarUrl} alt={byte.author.name} />
-              <AvatarFallback>{byte.author.name.charAt(0)}</AvatarFallback>
+              <AvatarFallback />
             </Avatar>
             <span>{byte.author.name}</span>
             <span>&middot;</span>
@@ -79,7 +79,7 @@ export default function BytePage({ params }: { params: { id: string } }) {
               <div className="flex items-center gap-3">
                  <Avatar>
                     <AvatarImage src="https://placehold.co/40x40.png" alt="Your avatar" />
-                    <AvatarFallback>Y</AvatarFallback>
+                    <AvatarFallback />
                   </Avatar>
                   <p className="font-semibold">Your Name</p>
               </div>
@@ -99,7 +99,7 @@ export default function BytePage({ params }: { params: { id: string } }) {
                 <div className="flex items-center gap-3">
                   <Avatar>
                     <AvatarImage src={comment.author.avatarUrl} alt={comment.author.name} />
-                    <AvatarFallback>{comment.author.name.charAt(0)}</AvatarFallback>
+                    <AvatarFallback />
                   </Avatar>
                   <p className="font-semibold">{comment.author.name}</p>
                 </div>

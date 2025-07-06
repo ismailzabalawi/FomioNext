@@ -18,8 +18,32 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { User, Palette, KeyRound, Bell } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 function ProfileSettings() {
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const [avatarPreview, setAvatarPreview] = React.useState<string | null>(null);
+
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setAvatarPreview(URL.createObjectURL(file));
+      // In a real app, you would have a function here to upload the file.
+      // e.g., uploadAvatar(file);
+    }
+  };
+
+  const currentUser = {
+    avatarUrl: "https://placehold.co/128x128.png",
+    name: "Alex Doe",
+    username: "alexdoe",
+    bio: "Frontend Developer & UI/UX enthusiast. Building the future of the web, one component at a time. Opinions are my own."
+  };
+
   return (
     <Card className="rounded-2xl">
       <CardHeader>
@@ -28,21 +52,43 @@ function ProfileSettings() {
           This is how others will see you on the site.
         </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">Name</Label>
-          <Input id="name" defaultValue="Alex Doe" />
+      <CardContent className="space-y-6">
+         <div className="flex items-center space-x-6">
+          <Avatar className="h-20 w-20">
+            <AvatarImage src={avatarPreview || currentUser.avatarUrl} alt={currentUser.name} />
+            <AvatarFallback />
+          </Avatar>
+          <div className="flex flex-col space-y-2">
+             <input
+                type="file"
+                className="hidden"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                accept="image/png, image/jpeg, image/gif"
+             />
+            <Button onClick={handleAvatarClick}>Change photo</Button>
+            <p className="text-xs text-muted-foreground">JPG, GIF or PNG. 1MB max.</p>
+          </div>
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="username">Username</Label>
-          <Input id="username" defaultValue="alexdoe" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="bio">Bio</Label>
-          <Textarea
-            id="bio"
-            defaultValue="Frontend Developer & UI/UX enthusiast. Building the future of the web, one component at a time. Opinions are my own."
-          />
+
+        <Separator />
+        
+        <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" defaultValue={currentUser.name} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input id="username" defaultValue={currentUser.username} />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="bio">Bio</Label>
+              <Textarea
+                id="bio"
+                defaultValue={currentUser.bio}
+              />
+            </div>
         </div>
         <Button>Save Changes</Button>
       </CardContent>
