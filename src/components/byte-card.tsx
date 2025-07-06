@@ -4,8 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Heart, Bookmark, Link2, MessageCircle } from "lucide-react";
+import { Heart, Bookmark, Link2, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type LinkPreview = {
     title: string;
@@ -107,7 +108,10 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, lin
           </Link>
         </CardTitle>
          <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
-            <User className="h-4 w-4" />
+            <Avatar className="h-6 w-6">
+              <AvatarImage src={author.avatarUrl} alt={author.name} data-ai-hint="profile picture" />
+              <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+            </Avatar>
             <span>By {author.name} in <span className="font-medium text-primary">{teret}</span></span>
         </div>
       </CardHeader>
