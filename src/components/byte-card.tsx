@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User } from "lucide-react";
+import { User, Heart, Bookmark } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type ByteCardProps = {
@@ -62,9 +62,17 @@ export default function ByteCard({ id, author, title, teret, className }: ByteCa
       <div className="flex-1" />
 
       <CardFooter className="flex justify-between items-center">
-        <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 font-semibold lowercase px-5">
-          <Link href={`/byte/${id}`}>view</Link>
-        </Button>
+        <div className="flex items-center gap-1">
+            <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 font-semibold lowercase px-4">
+              <Link href={`/byte/${id}`}>reply</Link>
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+                <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+                <Bookmark className="h-5 w-5" />
+            </Button>
+        </div>
         <AvatarStack />
       </CardFooter>
     </Card>
