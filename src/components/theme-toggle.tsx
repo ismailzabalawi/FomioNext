@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sun, Moon, BookOpen, Smartphone } from "lucide-react"
+import { Sun, Moon, BookOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 export function ThemeToggle() {
@@ -34,10 +34,6 @@ export function ThemeToggle() {
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           <Moon className="mr-2 h-4 w-4" />
           <span>Dark</span>
-        </DropdownMenuItem>
-         <DropdownMenuItem onClick={() => setTheme("dark-amoled")}>
-          <Smartphone className="mr-2 h-4 w-4" />
-          <span>Dark AMOLED</span>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => setTheme("reader")}>
            <BookOpen className="mr-2 h-4 w-4" />
