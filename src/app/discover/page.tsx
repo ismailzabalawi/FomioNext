@@ -1,5 +1,8 @@
 import ByteCard from "@/components/byte-card";
 import TeretCard from "@/components/teret-card";
+import Link from "next/link";
+import { Card } from "@/components/ui/card";
+import { Megaphone, ArrowRight } from "lucide-react";
 
 export default function DiscoverPage() {
   const terets = [
@@ -34,6 +37,23 @@ export default function DiscoverPage() {
         <h1 className="font-headline text-3xl font-bold tracking-tight">Discover</h1>
         <p className="text-muted-foreground">Explore popular topics and discussions across Fomio.</p>
       </div>
+
+      <Card className="sticky top-20 z-10 bg-card border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow">
+          <Link href="/teret/feedback" className="block p-4 group">
+              <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                      <div className="p-3 bg-primary/10 rounded-lg">
+                          <Megaphone className="h-6 w-6 text-primary" />
+                      </div>
+                      <div>
+                          <h3 className="font-headline font-semibold text-card-foreground">Have Feedback?</h3>
+                          <p className="text-sm text-muted-foreground">Help us improve Fomio. View posts or share your thoughts.</p>
+                      </div>
+                  </div>
+                  <ArrowRight className="h-5 w-5 text-muted-foreground group-hover:translate-x-1 transition-transform" />
+              </div>
+          </Link>
+      </Card>
 
       <section>
         <h2 className="font-headline text-2xl font-semibold mb-4">Trending Terets</h2>
