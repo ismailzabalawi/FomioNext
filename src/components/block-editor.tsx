@@ -12,16 +12,17 @@ interface EditorProps {
   editable?: boolean;
 }
 
-// This inner component contains the client-only hooks and will be rendered dynamically.
-const ClientSideEditor = ({
+// This inner component contains the client-only hooks.
+// It will only be rendered on the client, after the parent has mounted.
+const InnerEditor = ({
   onChange,
   initialContent,
   editable,
 }: EditorProps) => {
   const { resolvedTheme } = useTheme();
 
-  // The hook that was causing the error is now safely called only on the client.
-  const editor: BlockNoteEditor | null = useBlockNote({
+  // useBlockNote is a client-side hook and must not run on the server.
+  const editor = useBlockNote({
     editable,
     initialContent: initialContent,
     onEditorContentChange: (editor) => {
@@ -41,20 +42,20 @@ const ClientSideEditor = ({
   );
 };
 
-// This wrapper component ensures that the ClientSideEditor is only rendered
-// after the component has mounted on the client.
+// This is the main export. It's a wrapper component that ensures
+// InnerEditor (and its hooks) are only rendered on the client side.
 export default function BlockEditor(props: EditorProps) {
-  const [mounted, setMounted] = React.useState(false);
+  const [isMounted, setIsMounted] = React.useState(false);
 
   React.useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
   }, []);
-  
+
   // On the server, or before the initial client render, we return null.
-  // The parent component's `dynamic` import will show a loading skeleton instead.
-  if (!mounted) {
+  // The parent page's dynamic import will show a loading skeleton instead.
+  if (!isMounted) {
     return null;
   }
 
-  return <ClientSideEditor {...props} />;
+  return <InnerEditor {...props} />;
 }
