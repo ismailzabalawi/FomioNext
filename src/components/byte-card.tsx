@@ -115,14 +115,14 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, lin
 
       <CardFooter className="flex justify-between items-center">
         <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+            <Button asChild variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
               <Link href={`/byte/${id}`}><MessageCircle className="h-6 w-6" strokeWidth={2.25} /></Link>
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
                 <Heart className="h-6 w-6" strokeWidth={2.25} />
             </Button>
         </div>
-        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
             <Bookmark className="h-6 w-6" strokeWidth={2.25} />
         </Button>
       </CardFooter>
