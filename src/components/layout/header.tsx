@@ -5,6 +5,7 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const FomioIcon = () => (
   <svg role="img" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
@@ -47,9 +48,12 @@ export default function Header() {
       </Link>
       
       <div className="flex flex-1 items-center justify-end">
-        {(!scrolled || searchVisible) ? (
+        <div className="relative h-10 w-full max-w-lg">
           <div 
-              className="relative w-full max-w-lg"
+              className={cn(
+                "absolute inset-0 transition-opacity duration-300",
+                (!scrolled || searchVisible) ? "opacity-100" : "opacity-0 pointer-events-none"
+              )}
               onBlur={(e) => {
                 if (scrolled && !e.currentTarget.contains(e.relatedTarget)) {
                     setSearchVisible(false);
@@ -61,18 +65,25 @@ export default function Header() {
               id="header-search"
               placeholder="Search Fomio..."
               className="w-full rounded-full bg-muted pl-9"
+              tabIndex={(!scrolled || searchVisible) ? 0 : -1}
             />
           </div>
-        ) : (
-           <Button 
-                variant="ghost" 
-                size="icon" 
-                className="rounded-full"
-                onClick={handleSearchClick}
+          
+          <div className={cn(
+            "absolute right-0 top-0 transition-opacity duration-300",
+            (scrolled && !searchVisible) ? "opacity-100" : "opacity-0 pointer-events-none"
+          )}>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="rounded-full"
+              onClick={handleSearchClick}
+              tabIndex={(scrolled && !searchVisible) ? 0 : -1}
             >
               <Search className="h-5 w-5" />
             </Button>
-        )}
+          </div>
+        </div>
       </div>
     </header>
   );
