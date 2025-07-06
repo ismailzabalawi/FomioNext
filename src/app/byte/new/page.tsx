@@ -4,8 +4,20 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight, Hash } from "lucide-react";
-import { Input } from "@/components/ui/input";
+import { ArrowRight, Check, ChevronsUpDown } from "lucide-react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { cn } from "@/lib/utils";
+
+const teretOptions = [
+  { value: "web-dev", label: "Web Dev" },
+  { value: "design", label: "Design" },
+  { value: "ai-ml", label: "AI & ML" },
+  { value: "productivity", label: "Productivity" },
+  { value: "programming", label: "Programming" },
+  { value: "science", label: "Science" },
+  { value: "web3", label: "Web3" },
+];
 
 function CreateByteForm() {
   const router = useRouter();
@@ -13,6 +25,8 @@ function CreateByteForm() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [teret, setTeret] = useState("");
+  const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     // Pre-fill from query params if coming back from preview
@@ -43,15 +57,57 @@ function CreateByteForm() {
   return (
     <div className="flex flex-col h-full max-w-4xl mx-auto">
       <div className="flex-1 flex flex-col gap-4 py-4">
-        <div className="relative">
-          <Hash className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input
-            placeholder="Add a teret (e.g., WebDev, Design)"
-            value={teret}
-            onChange={(e) => setTeret(e.target.value)}
-            className="pl-9 font-semibold"
-          />
-        </div>
+        <Popover open={open} onOpenChange={setOpen}>
+            <PopoverTrigger asChild>
+                <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-full justify-between font-semibold"
+                >
+                    {teret || "Add a teret (e.g., WebDev, Design)"}
+                    <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                <Command value={searchValue} onValueChange={setSearchValue}>
+                    <CommandInput placeholder="Search or create a teret..."/>
+                    <CommandList>
+                        <CommandEmpty>
+                             <button
+                                className="relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none"
+                                onClick={() => {
+                                    setTeret(searchValue);
+                                    setOpen(false);
+                                }}
+                            >
+                                Create "{searchValue}"
+                            </button>
+                        </CommandEmpty>
+                        <CommandGroup>
+                            {teretOptions.map((option) => (
+                                <CommandItem
+                                    key={option.value}
+                                    value={option.label}
+                                    onSelect={(currentValue) => {
+                                        setTeret(currentValue.toLowerCase() === teret.toLowerCase() ? "" : option.label);
+                                        setOpen(false);
+                                    }}
+                                >
+                                    <Check
+                                        className={cn(
+                                            "mr-2 h-4 w-4",
+                                            teret.toLowerCase() === option.label.toLowerCase() ? "opacity-100" : "opacity-0"
+                                        )}
+                                    />
+                                    {option.label}
+                                </CommandItem>
+                            ))}
+                        </CommandGroup>
+                    </CommandList>
+                </Command>
+            </PopoverContent>
+        </Popover>
         <Textarea
           placeholder="Add title"
           value={title}
