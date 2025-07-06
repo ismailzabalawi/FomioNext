@@ -2,19 +2,31 @@
 
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { ThemeToggle } from "@/components/theme-toggle";
+import Link from "next/link";
+
+const FomioIcon = () => (
+  <svg role="img" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+    <title>Fomio</title>
+    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm0 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
+  </svg>
+);
+
 
 export default function Header() {
   return (
-    <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
-      <div className="relative flex-1">
+    <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:justify-end sm:px-6 lg:px-8">
+      {/* On mobile, show the logo in the header because the sidebar isn't visible */}
+      <Link href="/" className="sm:hidden">
+          <FomioIcon />
+      </Link>
+      
+      <div className="relative w-full max-w-xs sm:w-64">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
           placeholder="Search Fomio..."
-          className="w-full rounded-full bg-muted pl-9 md:w-1/2 lg:w-1/3"
+          className="w-full rounded-full bg-muted pl-9"
         />
       </div>
-      <ThemeToggle />
     </header>
   );
 }
