@@ -23,7 +23,7 @@ export default function SettingsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <RadioGroup value={theme} onValueChange={setTheme} className="grid sm:grid-cols-3 gap-4">
+          <RadioGroup value={theme} onValueChange={setTheme} className="grid grid-cols-2 gap-4">
             <div>
               <RadioGroupItem value="light" id="light" className="peer sr-only" />
               <Label
@@ -42,6 +42,16 @@ export default function SettingsPage() {
               >
                 <div className="w-full h-12 rounded-md bg-[#1F2937]" />
                 Dark
+              </Label>
+            </div>
+            <div>
+              <RadioGroupItem value="dark-amoled" id="dark-amoled" className="peer sr-only" />
+              <Label
+                htmlFor="dark-amoled"
+                className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+              >
+                <div className="w-full h-12 rounded-md bg-[#000000]" />
+                Dark AMOLED
               </Label>
             </div>
              <div>
