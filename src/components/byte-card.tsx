@@ -4,8 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { User, Heart, Bookmark, Link2 } from "lucide-react";
+import { User, Heart, Bookmark, Link2, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Separator } from "./ui/separator";
 
 type LinkPreview = {
     title: string;
@@ -113,18 +114,19 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, lin
       
       <div className="flex-1" />
 
-      <CardFooter className="flex justify-between items-center">
+      <CardFooter>
         <div className="flex items-center gap-1">
-            <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 font-semibold lowercase px-4">
-              <Link href={`/byte/${id}`}>reply</Link>
+            <Button asChild variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+              <Link href={`/byte/${id}`}><MessageCircle className="h-5 w-5" /></Link>
             </Button>
+            <Separator orientation="vertical" className="h-6 mx-1" />
             <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
                 <Heart className="h-5 w-5" />
             </Button>
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+                <Bookmark className="h-5 w-5" />
+            </Button>
         </div>
-        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
-            <Bookmark className="h-5 w-5" />
-        </Button>
       </CardFooter>
     </Card>
   );
