@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Heart, Bookmark } from "lucide-react";
@@ -21,28 +20,6 @@ type ByteCardProps = {
   teret: string;
   className?: string;
 };
-
-
-const AvatarStack = () => {
-    // Using placeholders for the avatar stack to represent engagement
-    const participants = [
-        { name: "User 1", avatarUrl: "https://placehold.co/40x40.png" },
-        { name: "User 2", avatarUrl: "https://placehold.co/40x40.png" },
-        { name: "User 3", avatarUrl: "https://placehold.co/40x40.png" },
-    ];
-
-    return (
-        <div className="flex -space-x-3 overflow-hidden">
-            {participants.map((p, index) => (
-                 <Avatar key={index} className="h-8 w-8 border-2 border-background">
-                    <AvatarImage src={p.avatarUrl} alt={p.name} data-ai-hint="profile picture" />
-                    <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
-                </Avatar>
-            ))}
-        </div>
-    )
-}
-
 
 export default function ByteCard({ id, author, title, teret, className }: ByteCardProps) {
   return (
@@ -69,11 +46,10 @@ export default function ByteCard({ id, author, title, teret, className }: ByteCa
             <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
                 <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
-                <Bookmark className="h-5 w-5" />
-            </Button>
         </div>
-        <AvatarStack />
+        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary">
+            <Bookmark className="h-5 w-5" />
+        </Button>
       </CardFooter>
     </Card>
   );
