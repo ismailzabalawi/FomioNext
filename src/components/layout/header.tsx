@@ -1,18 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search } from "lucide-react";
+import { Search, MessagesSquare } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-
-const FomioIcon = () => (
-  <svg role="img" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-    <title>Fomio</title>
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm0 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
-  </svg>
-);
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -47,7 +40,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
       <Link href="/" className="sm:hidden">
-          <FomioIcon />
+          <MessagesSquare className="h-6 w-6 text-primary" />
       </Link>
       
       <div className="flex flex-1 items-center justify-end sm:justify-center">

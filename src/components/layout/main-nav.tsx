@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Home, Compass, User, Settings, PenSquare, Bell } from "lucide-react";
+import { Home, Compass, User, Settings, PenSquare, Bell, MessagesSquare } from "lucide-react";
 
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
@@ -16,13 +16,6 @@ const navLinks = [
 ];
 
 const settingsLink = { href: "/settings", label: "Settings", icon: Settings };
-
-const FomioIcon = () => (
-  <svg role="img" viewBox="0 0 24 24" className="h-6 w-6 fill-current">
-    <title>Fomio</title>
-    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 1 1 0 16 8 8 0 0 1 0-16zm0 3a5 5 0 1 0 0 10 5 5 0 0 0 0-10z" />
-  </svg>
-)
 
 export default function MainNav() {
   const pathname = usePathname();
@@ -35,7 +28,7 @@ export default function MainNav() {
       <aside className="hidden w-16 flex-col items-center border-r bg-background py-6 sm:flex">
         <TooltipProvider>
           <Link href="/" className="mb-6">
-            <FomioIcon />
+            <MessagesSquare className="h-6 w-6 text-primary" />
           </Link>
           <nav className="flex flex-1 flex-col items-center gap-2">
             {desktopNavLinks.map((item) => (
