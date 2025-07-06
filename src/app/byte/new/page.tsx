@@ -1,39 +1,44 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { Skeleton } from "@/components/ui/skeleton";
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { BlockNoteEditor } from "@blocknote/core";
-
-const BlockEditor = dynamic(() => import("@/components/block-editor"), {
-  ssr: false,
-  loading: () => (
-    <div className="space-y-2 p-4 border rounded-lg">
-      <Skeleton className="h-8 w-1/3" />
-      <Skeleton className="h-20 w-full" />
-    </div>
-  ),
-});
+import { Textarea } from "@/components/ui/textarea";
 
 export default function NewBytePage() {
-  const handleEditorChange = (editor: BlockNoteEditor) => {
-    // In a real app, you would save this content to state or a database
-    console.log(editor.topLevelBlocks);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // In a real app, you would handle the form submission here
+    const formData = new FormData(e.currentTarget);
+    const title = formData.get("title");
+    const content = formData.get("content");
+    console.log({ title, content });
   };
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
-      <div className="space-y-2">
-        <Label>Content</Label>
-        <div className="rounded-lg border bg-background min-h-[200px]">
-           <BlockEditor onChange={handleEditorChange} />
+    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto space-y-8">
+       <div className="space-y-2">
+          <h1 className="font-headline text-3xl font-bold tracking-tight">Create a new Byte</h1>
+          <p className="text-muted-foreground">Share your thoughts with the community.</p>
+       </div>
+
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="title">Title</Label>
+          <Input id="title" name="title" placeholder="Enter a catchy title" />
         </div>
-        <p className="text-sm text-muted-foreground">
-          This is a block-based editor. Try typing <kbd className="px-1.5 py-0.5 border rounded bg-muted shadow-sm">/
-          </kbd> for commands.
-        </p>
+        <div className="space-y-2">
+          <Label htmlFor="content">Content</Label>
+          <Textarea
+            id="content"
+            name="content"
+            placeholder="Write your byte here..."
+            className="min-h-[300px]"
+          />
+        </div>
       </div>
-    </div>
+      
+      <Button type="submit">Publish Byte</Button>
+    </form>
   );
 }
