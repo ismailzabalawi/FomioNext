@@ -21,7 +21,7 @@ export default function ProfilePage() {
       author: { name: "Alex", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Art of the Command Line",
       teret: "Productivity",
-      imageUrl: "https://placehold.co/600x400.png",
+      link: "https://www.youtube.com/watch?v=zF34dRivLOw",
     },
   ];
 

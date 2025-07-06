@@ -15,21 +15,20 @@ export default function Home() {
       author: { name: "Leo", avatarUrl: "https://placehold.co/40x40.png" },
       title: "A Deep Dive into Rust for Systems Programming",
       teret: "Programming",
-      imageUrl: "https://placehold.co/600x400.png",
+      link: "https://www.youtube.com/watch?v=zF34dRivLOw",
     },
     {
       id: "3",
       author: { name: "Mia", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Minimalist Design Principles for Modern UIs",
       teret: "Design",
-      imageUrl: "https://placehold.co/600x400.png",
+      link: "https://uxdesign.cc/the-ultimate-guide-to-proper-use-of-typography-in-ui-design-48e945e85d32",
     },
     {
       id: "4",
       author: { name: "Noah", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Getting Started with Quantum Computing",
       teret: "Science",
-      imageUrl: "https://placehold.co/600x400.png",
     },
   ];
 

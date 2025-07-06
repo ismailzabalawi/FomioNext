@@ -23,7 +23,7 @@ export default function TeretPage({ params }: { params: { id: string } }) {
       author: { name: "Chris", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Server-Side Rendering vs. Client-Side Rendering",
       teret: "Web Dev",
-      imageUrl: "https://placehold.co/600x400.png",
+      link: "https://vercel.com/blog/everything-about-react-server-components",
     },
   ];
 
