@@ -70,10 +70,10 @@ function CreateByteForm() {
   };
 
   return (
-    <div className="grid h-full max-w-full grid-cols-1 gap-12 lg:grid-cols-2">
+    <div className="grid h-full max-w-full grid-cols-1 gap-12 md:grid-cols-2">
       {/* Editor Panel */}
       <div className="flex flex-col h-full">
-        <div className="py-4 flex justify-between items-center gap-4 border-b lg:border-none">
+        <div className="py-4 flex justify-between items-center gap-4 border-b md:border-none">
             <Popover open={open} onOpenChange={setOpen}>
                 <PopoverTrigger asChild>
                     <Button
@@ -126,17 +126,17 @@ function CreateByteForm() {
                 </PopoverContent>
             </Popover>
           <div className="flex items-center gap-2">
-             <Button onClick={handlePreview} disabled={!canSubmit} className="lg:hidden">
+             <Button onClick={handlePreview} disabled={!canSubmit} className="md:hidden">
               Preview
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button onClick={handlePublish} disabled={!canSubmit} className="hidden lg:inline-flex">
+            <Button onClick={handlePublish} disabled={!canSubmit} className="hidden md:inline-flex">
               Publish Byte
             </Button>
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col gap-4 pt-4 lg:pt-0">
+        <div className="flex-1 flex flex-col gap-4 pt-4 md:pt-0">
           <Textarea
             placeholder="Add title"
             value={title}
@@ -154,7 +154,7 @@ function CreateByteForm() {
       </div>
 
        {/* Preview Panel */}
-      <div className="hidden lg:flex flex-col space-y-6 pt-4">
+      <div className="hidden md:flex flex-col space-y-6 pt-4">
         <div>
             <h2 className="font-headline text-2xl font-bold tracking-tight">Live Preview</h2>
             <p className="text-muted-foreground">This is how your byte will look to the community.</p>
