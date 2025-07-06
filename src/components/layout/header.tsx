@@ -1,15 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Search, MessagesSquare } from "lucide-react";
+import { Search, MessagesSquare, Megaphone } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const scrollContainer = document.getElementById("main-scroll-container");
@@ -37,8 +40,10 @@ export default function Header() {
     }, 0);
   }
 
+  const showFeedbackButton = pathname === '/discover' && scrolled && !searchVisible;
+
   return (
-    <header className="sticky top-0 z-20 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-30 flex h-16 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 lg:px-8">
       <Link href="/" className="sm:hidden">
           <MessagesSquare className="h-6 w-6 text-primary" />
       </Link>
@@ -66,9 +71,24 @@ export default function Header() {
           </div>
           
           <div className={cn(
-            "absolute right-0 top-0 transition-opacity duration-300",
+            "absolute right-0 top-0 flex items-center transition-opacity duration-300",
             (scrolled && !searchVisible) ? "opacity-100" : "opacity-0 pointer-events-none"
           )}>
+            <AnimatePresence>
+              {showFeedbackButton && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0, opacity: 0 }}
+                >
+                  <Button asChild variant="ghost" size="icon" className="rounded-full">
+                    <Link href="/teret/feedback">
+                      <Megaphone className="h-5 w-5 text-primary" />
+                    </Link>
+                  </Button>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <Button 
               variant="ghost" 
               size="icon" 

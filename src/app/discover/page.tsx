@@ -1,8 +1,12 @@
+"use client";
+
 import ByteCard from "@/components/byte-card";
 import TeretCard from "@/components/teret-card";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Megaphone, ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
 export default function DiscoverPage() {
   const terets = [
@@ -31,6 +35,24 @@ export default function DiscoverPage() {
     },
   ];
 
+  const [isStickyCardVisible, setIsStickyCardVisible] = useState(true);
+
+  useEffect(() => {
+    const scrollContainer = document.getElementById("main-scroll-container");
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      // The point where the sticky card would meet the header
+      const isScrolled = scrollContainer.scrollTop > 10;
+      setIsStickyCardVisible(!isScrolled);
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check on load
+
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div className="space-y-12">
       <div>
@@ -38,7 +60,7 @@ export default function DiscoverPage() {
         <p className="text-muted-foreground">Explore popular topics and discussions across Fomio.</p>
       </div>
 
-      <Card className="sticky top-20 z-10 bg-card border-primary/20 shadow-lg hover:shadow-primary/20 transition-shadow">
+      <Card className={cn("sticky top-20 z-10 bg-card border-primary/20 shadow-lg hover:shadow-primary/20 transition-all duration-300", !isStickyCardVisible && "opacity-0 -translate-y-4 pointer-events-none")}>
           <Link href="/teret/feedback" className="block p-4 group">
               <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
