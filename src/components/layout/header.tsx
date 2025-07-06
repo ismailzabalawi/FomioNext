@@ -50,7 +50,7 @@ export default function Header() {
           <FomioIcon />
       </Link>
       
-      <div className="flex flex-1 items-center justify-end">
+      <div className="flex flex-1 items-center justify-end sm:justify-center">
         <div className="relative h-10 w-full max-w-lg">
           <div 
               className={cn(
