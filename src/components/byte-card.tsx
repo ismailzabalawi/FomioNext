@@ -1,12 +1,10 @@
 "use client"
 
-import Image from "next/image";
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Bookmark, MessageCircle } from "lucide-react";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { User } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type ByteCardProps = {
@@ -24,56 +22,50 @@ type ByteCardProps = {
   className?: string;
 };
 
-export default function ByteCard({ id, author, title, snippet, imageUrl, comments, bookmarks, teret, className }: ByteCardProps) {
-  return (
-    <Card className={cn("flex flex-col overflow-hidden transition-all hover:shadow-md", className)}>
-      {imageUrl && (
-        <Link href={`/byte/${id}`} className="block">
-          <div className="relative h-48 w-full">
-            <Image
-              src={imageUrl}
-              alt={title}
-              fill
-              className="object-cover"
-              data-ai-hint="abstract technology"
-            />
-          </div>
-        </Link>
-      )}
-      <CardHeader>
-        <div className="flex items-center gap-3">
-          <Avatar>
-            <AvatarImage src={author.avatarUrl} alt={author.name} data-ai-hint="profile picture" />
-            <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
-          </Avatar>
-          <div>
-            <p className="font-semibold">{author.name}</p>
-            <Badge variant="secondary">{teret}</Badge>
-          </div>
+
+const AvatarStack = () => {
+    // Using placeholders for the avatar stack to represent engagement
+    const participants = [
+        { name: "User 1", avatarUrl: "https://placehold.co/40x40.png" },
+        { name: "User 2", avatarUrl: "https://placehold.co/40x40.png" },
+        { name: "User 3", avatarUrl: "https://placehold.co/40x40.png" },
+    ];
+
+    return (
+        <div className="flex -space-x-3 overflow-hidden">
+            {participants.map((p, index) => (
+                 <Avatar key={index} className="h-8 w-8 border-2 border-background">
+                    <AvatarImage src={p.avatarUrl} alt={p.name} data-ai-hint="profile picture" />
+                    <AvatarFallback>{p.name.charAt(0)}</AvatarFallback>
+                </Avatar>
+            ))}
         </div>
-        <CardTitle className="pt-4 font-headline text-xl">
-          <Link href={`/byte/${id}`} className="hover:text-primary">
+    )
+}
+
+
+export default function ByteCard({ id, author, title, teret, className }: ByteCardProps) {
+  return (
+    <Card className={cn("flex flex-col overflow-hidden transition-all hover:shadow-xl rounded-2xl", className)}>
+      <CardHeader>
+        <CardTitle className="font-headline text-xl">
+          <Link href={`/byte/${id}`} className="hover:underline">
             {title}
           </Link>
         </CardTitle>
-      </CardHeader>
-      <CardContent className="flex-1">
-        <p className="text-muted-foreground">{snippet}</p>
-      </CardContent>
-      <CardFooter className="flex justify-between">
-        <div className="flex gap-4 text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <MessageCircle className="size-4" />
-            <span className="text-sm">{comments}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Bookmark className="size-4" />
-            <span className="text-sm">{bookmarks}</span>
-          </div>
+         <div className="flex items-center gap-2 text-sm text-muted-foreground pt-2">
+            <User className="h-4 w-4" />
+            <span>By {author.name} in <span className="font-medium text-primary">{teret}</span></span>
         </div>
-        <Button asChild variant="secondary" size="sm">
-          <Link href={`/byte/${id}`}>Read More</Link>
+      </CardHeader>
+      
+      <div className="flex-1" />
+
+      <CardFooter className="flex justify-between items-center">
+        <Button asChild size="sm" className="rounded-full bg-foreground text-background hover:bg-foreground/80 font-semibold lowercase px-5">
+          <Link href={`/byte/${id}`}>view</Link>
         </Button>
+        <AvatarStack />
       </CardFooter>
     </Card>
   );
