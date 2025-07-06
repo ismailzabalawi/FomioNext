@@ -13,10 +13,6 @@ type ByteCardProps = {
     avatarUrl: string;
   };
   title: string;
-  snippet: string;
-  imageUrl?: string;
-  comments: number;
-  bookmarks: number;
   teret: string;
   className?: string;
 };

@@ -14,19 +14,12 @@ export default function DiscoverPage() {
       id: "5",
       author: { name: "Zoe", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Is Web3 still relevant in 2024?",
-      snippet: "A critical look at the current state of decentralized applications and the blockchain ecosystem...",
-      comments: 201,
-      bookmarks: 88,
       teret: "Web3"
     },
     {
       id: "6",
       author: { name: "Alex", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Art of the Command Line",
-      snippet: "Unlock the hidden power of your terminal with these essential commands and workflows...",
-      imageUrl: "https://placehold.co/600x400.png",
-      comments: 154,
-      bookmarks: 72,
       teret: "Productivity"
     },
   ];

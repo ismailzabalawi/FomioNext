@@ -74,7 +74,7 @@ export default function BytePage({ params }: { params: { id: string } }) {
         <h2 className="font-headline text-2xl font-semibold">Comments ({comments.length})</h2>
 
         <div className="space-y-6">
-          <Card>
+          <Card className="rounded-2xl">
             <CardHeader>
               <div className="flex items-center gap-3">
                  <Avatar>
@@ -94,7 +94,7 @@ export default function BytePage({ params }: { params: { id: string } }) {
 
 
           {comments.map(comment => (
-            <Card key={comment.id}>
+            <Card key={comment.id} className="rounded-2xl">
               <CardHeader>
                 <div className="flex items-center gap-3">
                   <Avatar>

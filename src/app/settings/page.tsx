@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 
 function ProfileSettings() {
   return (
-    <Card>
+    <Card className="rounded-2xl">
       <CardHeader>
         <CardTitle>Profile</CardTitle>
         <CardDescription>
@@ -60,7 +60,7 @@ function AppearanceSettings() {
     theme === "dark" || theme === "dark-amoled" ? "dark" : theme;
 
   return (
-    <Card>
+    <Card className="rounded-2xl">
       <CardHeader>
         <CardTitle>Appearance</CardTitle>
         <CardDescription>
@@ -158,7 +158,7 @@ export default function SettingsPage() {
           <AppearanceSettings />
         </TabsContent>
         <TabsContent value="account" className="mt-6">
-          <Card>
+          <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Account</CardTitle>
               <CardDescription>
@@ -191,7 +191,7 @@ export default function SettingsPage() {
           </Card>
         </TabsContent>
         <TabsContent value="notifications" className="mt-6">
-          <Card>
+          <Card className="rounded-2xl">
             <CardHeader>
               <CardTitle>Notifications</CardTitle>
               <CardDescription>

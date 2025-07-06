@@ -12,7 +12,7 @@ type TeretCardProps = {
 export default function TeretCard({ name, description, bytesCount }: TeretCardProps) {
   const slug = name.toLowerCase().replace(/\s+/g, '-');
   return (
-    <Card className="flex flex-col justify-between transition-all hover:shadow-md">
+    <Card className="flex flex-col justify-between transition-all hover:shadow-xl rounded-2xl">
       <CardHeader>
         <CardTitle className="font-headline text-lg flex items-center gap-2">
           <Hash className="size-5 text-primary" />
@@ -22,7 +22,7 @@ export default function TeretCard({ name, description, bytesCount }: TeretCardPr
       </CardHeader>
       <div className="px-6 pb-4 flex justify-between items-center">
         <p className="text-sm text-muted-foreground">{bytesCount} Bytes</p>
-        <Button asChild variant="outline" size="sm">
+        <Button asChild variant="outline" size="sm" className="rounded-full px-4">
           <Link href={`/teret/${slug}`}>Explore</Link>
         </Button>
       </div>

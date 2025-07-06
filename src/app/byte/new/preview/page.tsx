@@ -26,7 +26,7 @@ function PreviewContent() {
                 <p className="text-muted-foreground">This is how your post will look to the community.</p>
             </div>
 
-            <Card className="overflow-hidden">
+            <Card className="overflow-hidden rounded-2xl">
                 <CardHeader>
                     <Badge variant="secondary" className="w-fit">{teret}</Badge>
                     <CardTitle className="font-headline text-2xl pt-2">{title}</CardTitle>

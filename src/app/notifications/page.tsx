@@ -54,7 +54,7 @@ export default function NotificationsPage() {
       </div>
       <div className="space-y-4">
         {notifications.map((notification) => (
-          <Card key={notification.id} className="p-0 hover:bg-muted/50 transition-colors">
+          <Card key={notification.id} className="p-0 hover:bg-muted/50 transition-colors rounded-2xl">
             <a href="#" className="block p-4">
             <CardContent className="p-0 flex items-start gap-4">
               <div className="relative">

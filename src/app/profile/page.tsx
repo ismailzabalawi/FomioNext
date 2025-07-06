@@ -20,10 +20,6 @@ export default function ProfilePage() {
       id: "6",
       author: { name: "Alex", avatarUrl: "https://placehold.co/40x40.png" },
       title: "The Art of the Command Line",
-      snippet: "Unlock the hidden power of your terminal with these essential commands and workflows...",
-      imageUrl: "https://placehold.co/600x400.png",
-      comments: 154,
-      bookmarks: 72,
       teret: "Productivity"
     },
   ];
@@ -35,7 +31,7 @@ export default function ProfilePage() {
 
   return (
     <div className="space-y-8">
-      <Card>
+      <Card className="rounded-2xl">
         <CardContent className="p-6 flex flex-col sm:flex-row items-center gap-6">
           <Avatar className="h-32 w-32 border-4 border-background shadow-md">
             <AvatarImage src={user.avatarUrl} alt={user.name} />
