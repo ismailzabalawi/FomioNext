@@ -33,7 +33,7 @@ export default function RootLayout({
               <MainNav />
               <div className="flex flex-1 flex-col border-l">
                 <Header />
-                <main className="flex-1 p-4 sm:p-6 lg:p-8">{children}</main>
+                <main className="flex-1 p-4 pb-24 sm:p-6 sm:pb-6 lg:p-8 lg:pb-8">{children}</main>
               </div>
             </div>
           </div>
