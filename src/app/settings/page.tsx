@@ -161,10 +161,32 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <CardTitle>Account</CardTitle>
-              <CardDescription>Manage your account settings.</CardDescription>
+              <CardDescription>
+                Manage your account settings. These settings are synced with
+                your main Discourse profile.
+              </CardDescription>
             </CardHeader>
-            <CardContent>
-              <p>Account settings are not yet implemented.</p>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  defaultValue="alex.doe@example.com"
+                  disabled
+                />
+                <p className="text-xs text-muted-foreground">
+                  You cannot change your email address here.
+                </p>
+              </div>
+              <Separator />
+              <div className="space-y-2">
+                <Label>Password</Label>
+                <Button variant="outline">Change Password</Button>
+                <p className="text-xs text-muted-foreground">
+                  You will be redirected to Discourse to change your password.
+                </p>
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
@@ -176,8 +198,34 @@ export default function SettingsPage() {
                 Configure how you receive notifications.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <p>Notification settings are not yet implemented.</p>
+            <CardContent className="space-y-4">
+              <div className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <Label htmlFor="notif-replies">Replies to my posts</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Get push notifications when someone replies to your content.
+                  </p>
+                </div>
+                <Switch id="notif-replies" defaultChecked={true} />
+              </div>
+              <div className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <Label htmlFor="notif-likes">Likes on my posts</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Get push notifications when someone likes your content.
+                  </p>
+                </div>
+                <Switch id="notif-likes" defaultChecked={true} />
+              </div>
+              <div className="flex flex-row items-center justify-between rounded-lg border p-4">
+                <div className="space-y-0.5">
+                  <Label htmlFor="notif-followers">New followers</Label>
+                  <p className="text-sm text-muted-foreground">
+                    Get push notifications when someone starts following you.
+                  </p>
+                </div>
+                <Switch id="notif-followers" defaultChecked={false} />
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
