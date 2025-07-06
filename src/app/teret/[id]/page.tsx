@@ -17,6 +17,7 @@ export default function TeretPage({ params }: { params: { id: string } }) {
       title: "The Future of Frontend Development",
       teret: "Web Dev",
       imageUrl: "https://placehold.co/600x400.png",
+      commentsCount: 2,
     },
     {
       id: "7",
@@ -30,7 +31,8 @@ export default function TeretPage({ params }: { params: { id: string } }) {
         image: "https://placehold.co/600x400.png",
         siteName: "Vercel",
         favicon: "https://placehold.co/32x32.png"
-      }
+      },
+      commentsCount: 21,
     },
   ];
 

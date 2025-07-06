@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { User, Heart, Bookmark, Link2, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -27,6 +27,7 @@ type ByteCardProps = {
   link?: string;
   linkPreview?: LinkPreview | null;
   className?: string;
+  commentsCount?: number;
 };
 
 // Helper function to extract YouTube video ID from various URL formats
@@ -43,7 +44,7 @@ const getYouTubeId = (url: string) => {
     return null;
 };
 
-export default function ByteCard({ id, author, title, teret, imageUrl, link, linkPreview, className }: ByteCardProps) {
+export default function ByteCard({ id, author, title, teret, imageUrl, link, linkPreview, className, commentsCount }: ByteCardProps) {
   const youTubeId = link ? getYouTubeId(link) : null;
   const isGenericLink = link && !youTubeId;
 
@@ -115,14 +116,15 @@ export default function ByteCard({ id, author, title, teret, imageUrl, link, lin
 
       <CardFooter className="flex justify-between items-center">
         <div className="flex items-center gap-4">
-            <Button asChild variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
-              <Link href={`/byte/${id}`}><MessageCircle className="h-6 w-6" strokeWidth={2.25} /></Link>
-            </Button>
-            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
+            <Link href={`/byte/${id}`} className={cn(buttonVariants({ variant: 'ghost' }), "rounded-full h-10 px-3 text-muted-foreground transition-all hover:scale-110 hover:text-primary hover:drop-shadow-md flex items-center gap-1.5")}>
+                <MessageCircle className="h-6 w-6" strokeWidth={2.25} />
+                {commentsCount !== undefined && <span className="font-semibold text-sm">{commentsCount}</span>}
+            </Link>
+            <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground transition-all hover:scale-110 hover:text-primary hover:drop-shadow-md">
                 <Heart className="h-6 w-6" strokeWidth={2.25} />
             </Button>
         </div>
-        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground hover:text-primary transition-all hover:scale-110 hover:drop-shadow-md">
+        <Button variant="ghost" size="icon" className="rounded-full text-muted-foreground transition-all hover:scale-110 hover:text-primary hover:drop-shadow-md">
             <Bookmark className="h-6 w-6" strokeWidth={2.25} />
         </Button>
       </CardFooter>

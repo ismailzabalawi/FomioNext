@@ -9,6 +9,7 @@ export default function Home() {
       title: "The Future of Frontend Development",
       teret: "Web Dev",
       imageUrl: "https://placehold.co/600x400.png",
+      commentsCount: 2,
     },
     {
       id: "2",
@@ -16,6 +17,7 @@ export default function Home() {
       title: "A Deep Dive into Rust for Systems Programming",
       teret: "Programming",
       link: "https://www.youtube.com/watch?v=zF34dRivLOw",
+      commentsCount: 5,
     },
     {
       id: "3",
@@ -29,14 +31,16 @@ export default function Home() {
         image: "https://placehold.co/600x400.png",
         siteName: "UX Collective",
         favicon: "https://placehold.co/32x32.png"
-      }
+      },
+      commentsCount: 0,
     },
     {
       id: "4",
       author: { name: "Noah", avatarUrl: "https://placehold.co/40x40.png" },
       title: "Getting Started with Quantum Computing",
       teret: "Science",
-      imageUrl: "https://placehold.co/600x400.png"
+      imageUrl: "https://placehold.co/600x400.png",
+      commentsCount: 18,
     },
   ];
 

@@ -22,6 +22,7 @@ export default function ProfilePage() {
       title: "The Art of the Command Line",
       teret: "Productivity",
       link: "https://www.youtube.com/watch?v=zF34dRivLOw",
+      commentsCount: 9,
     },
   ];
 

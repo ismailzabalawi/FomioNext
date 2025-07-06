@@ -16,6 +16,7 @@ export default function DiscoverPage() {
       title: "Is Web3 still relevant in 2024?",
       teret: "Web3",
       imageUrl: "https://placehold.co/600x400.png",
+      commentsCount: 3,
     },
     {
       id: "6",
@@ -23,6 +24,7 @@ export default function DiscoverPage() {
       title: "The Art of the Command Line",
       teret: "Productivity",
       link: "https://www.youtube.com/watch?v=zF34dRivLOw",
+      commentsCount: 9,
     },
   ];
 
