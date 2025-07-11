@@ -1,0 +1,9 @@
+# This file serves as a placeholder for the Android adaptive icon
+# In a real project, this would be a 1024x1024 PNG image for Android adaptive icons
+# You can replace this with your actual adaptive icon file
+
+# The adaptive icon should be:
+# - 1024x1024 pixels
+# - PNG format with transparency
+# - Designed to work with Android's adaptive icon system
+# - Safe area considerations for different mask shapes
