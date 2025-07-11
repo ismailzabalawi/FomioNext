@@ -1,0 +1,9 @@
+# This file serves as a placeholder for the splash screen
+# In a real project, this would be a high-resolution PNG image for the splash screen
+# You can replace this with your actual splash screen image
+
+# The splash screen should be:
+# - High resolution (typically 2732x2732 for universal)
+# - PNG format with transparency support
+# - Centered design that works on all screen sizes
+# - Matches your app's visual identity

@@ -1,79 +1,61 @@
-import * as React from "react"
+import React from 'react';
+import styled from 'styled-components/native';
 
-import { cn } from "@/lib/utils"
+import { CardProps } from '@/types';
 
-const Card = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    )}
-    {...props}
-  />
-))
-Card.displayName = "Card"
+const StyledCard = styled.TouchableOpacity<{
+  onPress?: () => void;
+  elevation: number;
+}>`
+  background-color: ${props => props.theme.colors.surface};
+  border-radius: ${props => props.theme.borderRadius.lg}px;
+  padding: ${props => props.theme.spacing.md}px;
+  margin-bottom: ${props => props.theme.spacing.sm}px;
+  shadow-color: #000;
+  shadow-offset: 0px ${props => props.elevation * 2}px;
+  shadow-opacity: 0.1;
+  shadow-radius: ${props => props.elevation * 2}px;
+  elevation: ${props => props.elevation};
+  border-width: 1px;
+  border-color: ${props => props.theme.colors.border};
+`;
 
-const CardHeader = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
-    {...props}
-  />
-))
-CardHeader.displayName = "CardHeader"
+const NonTouchableCard = styled.View<{
+  elevation: number;
+}>`
+  background-color: ${props => props.theme.colors.surface};
+  border-radius: ${props => props.theme.borderRadius.lg}px;
+  padding: ${props => props.theme.spacing.md}px;
+  margin-bottom: ${props => props.theme.spacing.sm}px;
+  shadow-color: #000;
+  shadow-offset: 0px ${props => props.elevation * 2}px;
+  shadow-opacity: 0.1;
+  shadow-radius: ${props => props.elevation * 2}px;
+  elevation: ${props => props.elevation};
+  border-width: 1px;
+  border-color: ${props => props.theme.colors.border};
+`;
 
-const CardTitle = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn(
-      "text-2xl font-semibold leading-none tracking-tight",
-      className
-    )}
-    {...props}
-  />
-))
-CardTitle.displayName = "CardTitle"
+export function Card({
+  children,
+  onPress,
+  elevation = 2,
+}: CardProps): JSX.Element {
+  if (onPress) {
+    return (
+      <StyledCard
+        onPress={onPress}
+        elevation={elevation}
+        activeOpacity={0.8}
+      >
+        {children}
+      </StyledCard>
+    );
+  }
 
-const CardDescription = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-))
-CardDescription.displayName = "CardDescription"
-
-const CardContent = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
-))
-CardContent.displayName = "CardContent"
-
-const CardFooter = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("flex items-center p-6 pt-0", className)}
-    {...props}
-  />
-))
-CardFooter.displayName = "CardFooter"
-
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+  return (
+    <NonTouchableCard elevation={elevation}>
+      {children}
+    </NonTouchableCard>
+  );
+}

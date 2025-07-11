@@ -1,0 +1,9 @@
+# This file serves as a placeholder for the notification icon
+# In a real project, this would be a PNG image for push notification icons
+# You can replace this with your actual notification icon file
+
+# The notification icon should be:
+# - 24x24 dp (Android) or similar size
+# - PNG format with transparency
+# - Monochrome design (for Android)
+# - Clear and recognizable at small sizes
